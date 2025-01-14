@@ -19,7 +19,10 @@ class Program
         // Запуск трекера в отдельном потоке
         var trackerTask = tracker.StartTrackingAsync();
 
-        Console.WriteLine("Нажмите Ctrl+Shift+Q для завершения работы.");
+        var consoleSubscriber = new ConsoleKeyboardEventSubscriber();
+        tracker.Subscribe(consoleSubscriber);
+
+        Console.WriteLine("Нажмите Ctrl+Q для завершения работы.");
 
         // Ожидание завершения трекера
         await trackerTask;
